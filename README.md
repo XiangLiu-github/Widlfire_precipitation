@@ -27,14 +27,14 @@ This repository contains all scripts necessary to replicate the results and figu
 2. **Run data processing scripts**  - Rscript 01_*.R
    
 3. **Run plotting scripts** - Rscript 02_*.R
-     
-4.	**Publish figures** - Rscript publish_figures.R
+
+4. **Publish figures** - Rscript publish_figures.R
 
 ⸻
 
 📝 Notes
-	•	Ensure that all required R packages are installed before running any scripts.
-	•	It is recommended to source loadpackages.R and loadfunctions.R at the beginning of your R session.
+- Ensure that all required R packages are installed before running any scripts.
+- It is recommended to source loadpackages.R and loadfunctions.R at the beginning of your R session.
 
 ---
 
