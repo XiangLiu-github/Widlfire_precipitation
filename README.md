@@ -1,4 +1,4 @@
-# Replication Code for “Large wildfires cause local drying in the following growing-season”
+# Replication Code for “Large wildfires cause local drying in the following growing season”
 
 This repository contains all scripts necessary to replicate the results and figures presented in the paper **“Large wildfires cause local post-fire drying.”**
 
