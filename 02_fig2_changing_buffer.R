@@ -9,7 +9,7 @@ fire_buffered = qread('data/outputs/fire_buffer_0.25.qs') %>%
   filter(!lc_name %in% c("Croplands", 'Water bodies', 'Urban and Built-up Lands')) %>% 
   select(- ig_date) 
 
-mdatas = map(c('0.5' = 0.5, '2' = 2, '5' = 5), function(abuffer){
+mdatas = map(c('F = 0.5' = 0.5, 'F = 2' = 2, 'F = 5' = 5), function(abuffer){
   
   fire_buffered_large = qread(str_c('data/outputs/fire_buffer_', abuffer, '.qs')) %>%
     inner_join(qread('data/outputs/fire_lc.qs')) %>% 
@@ -129,7 +129,7 @@ coefs = map_dfr(mdatas, function(amdatas){
 
 coefs %>% 
   filter(str_detect(term, 'time_to_ig')) %>% 
-  add_row(buffer = c('0.5', '2', '5'), term = '-17', estimate = 0, std.error = 0) %>%
+  add_row(buffer = c('F = 0.5', 'F = 2', 'F = 5'), term = '-17', estimate = 0, std.error = 0) %>%
   mutate(term = parse_number(term)) %>% 
   ggplot(aes(x = term, y = expm1(estimate) * 100, ymax = expm1(estimate + 1.96 * std.error)  * 100, ymin = expm1(estimate - 1.96 * std.error)  * 100, color = buffer)) + 
   geom_hline(yintercept = 0, linetype = 'longdash', color = 'grey60') +
@@ -160,7 +160,7 @@ fire_buffered_large = qread('data/outputs/fire_buffer_5.qs') %>%
   filter(!lc_name %in% c("Croplands", 'Water bodies', 'Urban and Built-up Lands')) %>% 
   select(- ig_date) 
 
-mdatas = map(c('0' = 0, '0.25' = 0.25, '0.5' = 0.5, '2' = 2), function(abuffer){
+mdatas = map(c('F = 0' = 0, 'F = 0.25' = 0.25, 'F = 0.5' = 0.5, 'F = 2' = 2), function(abuffer){
   
   fire_buffered = qread(str_c('data/outputs/fire_buffer_', abuffer, '.qs')) %>%
     inner_join(qread('data/outputs/fire_lc.qs')) %>% 
@@ -280,7 +280,7 @@ coefs = map_dfr(mdatas, function(amdatas){
 
 coefs %>% 
   filter(str_detect(term, 'time_to_ig')) %>% 
-  add_row(buffer = c('0', '0.25', '0.5', '2'), term = '-17', estimate = 0, std.error = 0) %>%
+  add_row(buffer = c('F = 0', 'F = 0.25', 'F = 0.5', 'F = 2'), term = '-17', estimate = 0, std.error = 0) %>%
   mutate(term = parse_number(term)) %>% 
   ggplot(aes(x = term, y = expm1(estimate) * 100, ymax = expm1(estimate + 1.96 * std.error)  * 100, ymin = expm1(estimate - 1.96 * std.error)  * 100, color = buffer)) + 
   geom_hline(yintercept = 0, linetype = 'longdash', color = 'grey60') +

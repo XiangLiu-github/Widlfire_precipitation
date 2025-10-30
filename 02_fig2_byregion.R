@@ -123,8 +123,6 @@ get_mdata = function(adataset){
 mdatas = list(NDVI, cloud, temp, SM, prep) %>% 
   map(get_mdata)
 
-mdatas[[5]]$value = DescTools::Winsorize(mdatas[[5]]$value, c(0, 300))
-
 get_res = function(amdata, avar, amodel){
   
   amdata = amdata %>% 
@@ -206,11 +204,12 @@ p6 = mdatas[[5]] %>%
   geom_sf(aes(alpha = eco_name), color = 'grey70', data = ecoregion, show.legend = F) +
   geom_point(aes(x = centroid_x, y = centroid_y, color = Region), size = 0.5) +
   scale_color_manual(name = '',
-                     values = c(color1, color2, color3, color4)) +
+                     values = c(color1, color2, color3, color4),
+                     labels = c('Southwest', 'Northwest', 'Southeast', 'Northeast')) +
   coord_sf(ylim = c(25, 68), xlim = c(-160, -60)) +
   theme_map() +
   theme(legend.position = 'inside',
-        legend.position.inside = c(0.8, 0.2),
+        legend.position.inside = c(0.2, 0.2),
         legend.title = element_blank()) +
   guides(colour = guide_legend(override.aes = list(size = 2)))
 

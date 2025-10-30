@@ -21,7 +21,7 @@ c(
 # supplementary ----------------------------------------------------------------
 
 c(
-  "figures/prep_cloud_cor.pdf",
+  "figures/cor_prep_cloud.pdf",
   "figures/fig2_0.25_changing_buffer.pdf",
   "figures/fig2_5_changing_buffer.pdf",
   'figures/fire_month_area_hist.pdf',

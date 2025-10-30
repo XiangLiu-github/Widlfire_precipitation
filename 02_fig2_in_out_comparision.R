@@ -37,7 +37,7 @@ circle3 = prep_station %>%
   st_drop_geometry() %>% 
   anti_join(prep_station %>% st_intersection(fire_buffered_small))
 
-coefs = map_dfr(list('F = 0.25' = circle1, 'F = 0.25 ~ F = 0.5' = circle2), function(acircle){
+coefs = map_dfr(list('F = 0.25' = circle1, 'F = 0.25 to F = 0.5' = circle2), function(acircle){
   
   treatment = acircle
   
@@ -131,7 +131,7 @@ coefs = map_dfr(list('F = 0.25' = circle1, 'F = 0.25 ~ F = 0.5' = circle2), func
 
 p2 = coefs %>% 
   filter(str_detect(term, 'time_to_ig')) %>% 
-  add_row(var = c('F = 0.25', 'F = 0.25 ~ F = 0.5'), term = '-17', estimate = 0, std.error = 0) %>%
+  add_row(var = c('F = 0.25', 'F = 0.25 to F = 0.5'), term = '-17', estimate = 0, std.error = 0) %>%
   mutate(term = parse_number(term)) %>% 
   ggplot(aes(x = term, y = expm1(estimate) * 100, ymax = expm1(estimate + 1.96 * std.error)  * 100, ymin = expm1(estimate - 1.96 * std.error)  * 100, color = var)) +
   geom_hline(yintercept = 0, linetype = 'longdash', color = 'grey60') +
